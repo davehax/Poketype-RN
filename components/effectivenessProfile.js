@@ -3,13 +3,15 @@ import { ScrollView, StyleSheet, View, Image, Dimensions, TouchableNativeFeedbac
 import Type, { SmallTypeFlex, SmallTypeFlexImmune, SmallTypeFlexDouble } from "./type.js";
 import types, { typesArray, calculateStrengthsAndWeaknesses } from "../lib/poketype.js";
 import Container, { Heading1, Heading2, ContainerPadded, ContainerPaddedVertical } from "./common.js";
+import _ from "lodash";
 
 const styles = StyleSheet.create({
     types: {
         flex: 1,
         flexDirection: "row",
-        // justifyContent: "center",
-        alignItems: "flex-start"
+        alignItems: "flex-start",
+        paddingTop: 15,
+        paddingBottom: 5
     },
     strengths: {
         flex: 1,
@@ -28,7 +30,9 @@ const styles = StyleSheet.create({
 })
 
 const EffectivenessProfile = ({ type1, type2 }) => {
-    let selectedTypes = [type1, type2].filter((t) => t !== types.unselected);
+    let selectedTypes = _.uniq(
+        [type1, type2].filter((t) => t !== types.unselected)
+    );
 
     // Early exit if there are no selected types
     if (selectedTypes.length === 0) {

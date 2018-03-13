@@ -1,5 +1,6 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, View, Dimensions, ImageBackground } from "react-native";
+import { Heading1 } from "./components/common.js";
 import Type from "./components/type.js";
 import types from "./lib/poketype.js";
 import BackgroundImage from "./components/backgroundImage.js";
@@ -18,7 +19,7 @@ const styles = StyleSheet.create({
         width : '100%'
     },
     container: {
-        flex: 1
+        flex: 0
     },
     content: {
         flex: 1,
@@ -82,23 +83,27 @@ class App extends React.Component {
     render() {
         return (
             <ImageBackground source={imgPikachoo} style={styles.backgroundImage}>
-                <ScrollView contentContainerStyle={styles.container}>
-                    {/* <BackgroundImage /> */}
-                    <View style={styles.content}>
-                        <View style={styles.pickers}>
-                            <Picker type={this.state.type1} onPress={() => this.pickType("type1")} onCancelPress={() => this.resetType("type1")} />
-                            <Picker type={this.state.type2} onPress={() => this.pickType("type2")} onCancelPress={() => this.resetType("type2")} />
+                {this.state.pickerPanelVisible ? (
+                    <PickerPanel onPicked={this.onPicked} onPressCancel={this.onPickerCancel} />
+                ) : (
+                    <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.container}>
+                        {/* <BackgroundImage /> */}
+                        <View style={styles.content}>
+                            <Heading1>Poketype</Heading1>
+                            <Text>Select one or two types to see their individual or combined strengths and weaknesses</Text>
+                            <View style={styles.pickers}>
+                                <Picker type={this.state.type1} onPress={() => this.pickType("type1")} onCancelPress={() => this.resetType("type1")} />
+                                <Picker type={this.state.type2} onPress={() => this.pickType("type2")} onCancelPress={() => this.resetType("type2")} />
+                            </View>
+
+                            {!this.state.pickerPanelVisible && (
+                                <EffectivenessProfile type1={this.state.type1} type2={this.state.type2} />
+                            )}
+
+                            
                         </View>
-
-                        {!this.state.pickerPanelVisible && (
-                            <EffectivenessProfile type1={this.state.type1} type2={this.state.type2} />
-                        )}
-
-                        {this.state.pickerPanelVisible && (
-                            <PickerPanel onPicked={this.onPicked} onPressCancel={this.onPickerCancel} />
-                        )}
-                    </View>
-                </ScrollView>
+                    </ScrollView>
+                )}
             </ImageBackground>
         );
     }
