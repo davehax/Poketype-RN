@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     types: {
         flex: 1,
         flexDirection: "row",
+        flexWrap: "wrap",
         alignItems: "flex-start",
         paddingTop: 15,
         paddingBottom: 5
@@ -18,14 +19,24 @@ const styles = StyleSheet.create({
         padding: 10,
         minHeight: 100,
         // backgroundColor: "#0E7E12"
-        backgroundColor: "rgba(0, 200, 0, 0.5)"
+        backgroundColor: "rgba(0, 200, 0, 0.5)",
+        borderStyle: "solid",
+        borderTopWidth: 1,
+        borderBottomWidth: 1,
+        borderTopColor: "#0E7E12",
+        borderBottomColor: "#0E7E12"
     },
     weaknesses: {
         flex: 1,
         padding: 10,
         minHeight: 100,
         // backgroundColor: "#FF0000"
-        backgroundColor: "rgba(200, 100, 50, 0.5)"
+        backgroundColor: "rgba(200, 100, 50, 0.5)",
+        borderStyle: "solid",
+        borderTopWidth: 1,
+        borderBottomWidth: 1,
+        borderTopColor: "#FF0000",
+        borderBottomColor: "#FF0000"
     }
 })
 
@@ -108,8 +119,10 @@ const SimpleDisplayPanel = ({ title, single, double, immune }) => {
         <ContainerPaddedVertical>
             <Heading2>{title}</Heading2>
             <View style={styles.types}>
-                {immune.length ? immune.map((t) => <SmallTypeFlexImmune icon={t} />) : null}
-                {double.length ? double.map((t) => <SmallTypeFlexDouble icon={t} />) : null}
+                {/* {immune.length ? immune.map((t) => <SmallTypeFlexImmune icon={t} />) : null} */}
+                {immune.length ? immune.map((t) => <SmallTypeFlex icon={t} />) : null}
+                {/* {double.length ? double.map((t) => <SmallTypeFlexDouble icon={t} />) : null} */}
+                {double.length ? double.map((t) => <SmallTypeFlex icon={t} />) : null}
                 {single.length ? single.map((t) => <SmallTypeFlex icon={t} />) : null}
             </View>
         </ContainerPaddedVertical>
