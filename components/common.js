@@ -37,7 +37,7 @@ class Container extends PureComponent {
 class ContainerPadded extends PureComponent {
     render() {
         return (
-            <View style={{ flex: 1, padding: 10 }}>
+            <View style={{ flex: 1, padding: 20 }}>
                 {this.props.children}
             </View>
         )
@@ -47,7 +47,7 @@ class ContainerPadded extends PureComponent {
 class ContainerPaddedVertical extends PureComponent {
     render() {
         return (
-            <View style={{ flex: 1, paddingTop: 10, paddingBottom: 10 }}>
+            <View style={{ flex: 1, paddingTop: 20, paddingBottom: 20 }}>
                 {this.props.children}
             </View>
         )

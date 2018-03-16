@@ -1,13 +1,13 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, View, Dimensions, ImageBackground } from "react-native";
-import { Heading1 } from "./components/common.js";
+import { Heading1, ContainerPadded } from "./components/common.js";
+import { imgPikachoo } from "./components/images.js";
 import Type from "./components/type.js";
 import types from "./lib/poketype.js";
 import BackgroundImage from "./components/backgroundImage.js";
 import Picker from "./components/picker.js";
 import PickerPanel from "./components/pickerPanel.js";
 import EffectivenessProfile from "./components/effectivenessProfile.js";
-import { imgPikachoo } from "./components/images.js";
 
 const pikachoo = require("./img/pikachoo.jpg");
 
@@ -23,13 +23,15 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 1,
-        paddingTop: 50,
-        paddingBottom: 50
+        paddingTop: 40,
+        paddingBottom: 0
     },
     pickers: { 
         justifyContent: "center", 
         alignItems: "center", 
-        flexDirection: "row" 
+        flexDirection: "row",
+        paddingTop: 10,
+        paddingBottom: 10
     }
 });
 
@@ -89,8 +91,10 @@ class App extends React.Component {
                     <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.container}>
                         {/* <BackgroundImage /> */}
                         <View style={styles.content}>
-                            <Heading1>Poketype</Heading1>
-                            <Text>Select one or two types to see their individual or combined strengths and weaknesses</Text>
+                            <ContainerPadded>
+                                <Heading1>Poketype</Heading1>
+                                <Text>Select one or two types to see their individual or combined strengths and weaknesses</Text>
+                            </ContainerPadded>
                             <View style={styles.pickers}>
                                 <Picker type={this.state.type1} onPress={() => this.pickType("type1")} onCancelPress={() => this.resetType("type1")} />
                                 <Picker type={this.state.type2} onPress={() => this.pickType("type2")} onCancelPress={() => this.resetType("type2")} />

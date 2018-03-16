@@ -14,9 +14,27 @@ const styles = StyleSheet.create({
         paddingTop: 15,
         paddingBottom: 5
     },
+    typeBorder: {
+        borderStyle: "solid",
+        borderBottomColor: "#000000",
+        borderBottomWidth: 1,
+        borderLeftColor: "#000000",
+        borderLeftWidth: 1,
+        borderRightColor: "#000000",
+        borderRightWidth: 1,
+        paddingTop: 5,
+        flex: 0,
+        height: 5,
+        width: "100%"
+    },
+    typeSubTitle: {
+        paddingLeft: 0,
+        paddingTop: 10,
+        fontSize: 16
+    },
     strengths: {
         flex: 1,
-        padding: 10,
+        padding: 20,
         minHeight: 100,
         // backgroundColor: "#0E7E12"
         backgroundColor: "rgba(0, 200, 0, 0.5)",
@@ -28,7 +46,7 @@ const styles = StyleSheet.create({
     },
     weaknesses: {
         flex: 1,
-        padding: 10,
+        padding: 20,
         minHeight: 100,
         // backgroundColor: "#FF0000"
         backgroundColor: "rgba(200, 100, 50, 0.5)",
@@ -65,34 +83,36 @@ const EffectivenessProfile = ({ type1, type2 }) => {
             {/* Strengths */}
             <View style={styles.strengths}>
                 <Heading1>Strengths</Heading1>
-                <TypedDisplayPanel 
-                    title="Effective Against" 
-                    selectedTypes={selectedTypes} 
-                    effectivenessProfile={effectivenessProfile} 
-                    index="effective" 
+                <TypedDisplayPanel
+                    title="Effective Against"
+                    selectedTypes={selectedTypes}
+                    effectivenessProfile={effectivenessProfile}
+                    index="effective"
                 />
-                <SimpleDisplayPanel 
-                    title="Resistant To" 
-                    single={effectivenessProfile.combined.resist} 
-                    double={effectivenessProfile.combined.resistDouble} 
-                    immune={effectivenessProfile.combined.resistImmune} 
+                <View style={{ height: 10 }}></View>
+                <SimpleDisplayPanel
+                    title="Resistant To"
+                    single={effectivenessProfile.combined.resist}
+                    double={effectivenessProfile.combined.resistDouble}
+                    immune={effectivenessProfile.combined.resistImmune}
                 />
             </View>
 
             {/* Weaknesses */}
             <View style={styles.weaknesses}>
                 <Heading1>Weaknesses</Heading1>
-                <SimpleDisplayPanel 
-                    title="Vulnerable To" 
-                    single={effectivenessProfile.combined.vulnerable} 
-                    double={effectivenessProfile.combined.vulnerableDouble} 
-                    immune={[]} 
+                <SimpleDisplayPanel
+                    title="Vulnerable To"
+                    single={effectivenessProfile.combined.vulnerable}
+                    double={effectivenessProfile.combined.vulnerableDouble}
+                    immune={[]}
                 />
-                <TypedDisplayPanel 
-                    title="Not Effective Against" 
-                    selectedTypes={selectedTypes} 
-                    effectivenessProfile={effectivenessProfile} 
-                    index="notEffective" 
+                <View style={{ height: 10 }}></View>
+                <TypedDisplayPanel
+                    title="Not Effective Against"
+                    selectedTypes={selectedTypes}
+                    effectivenessProfile={effectivenessProfile}
+                    index="notEffective"
                 />
             </View>
         </Container>
@@ -105,8 +125,14 @@ const TypedDisplayPanel = ({ title, selectedTypes, effectivenessProfile, index }
             <Heading2>{title}</Heading2>
             {selectedTypes.map((selectedType) => {
                 return (
-                    <View style={styles.types}>
-                        {effectivenessProfile[selectedType][index].map((t) => <SmallTypeFlex icon={t} />)}
+                    <View>
+                        <View style={styles.types}>
+                            {effectivenessProfile[selectedType][index].map((t) => <SmallTypeFlex icon={t} />)}
+                        </View>
+                        <View style={styles.typeBorder}></View>
+                        <View>
+                            <Text style={styles.typeSubTitle}>{selectedType.toUpperCase()}</Text>
+                        </View>
                     </View>
                 )
             })}
