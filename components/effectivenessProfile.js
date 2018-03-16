@@ -145,10 +145,8 @@ const SimpleDisplayPanel = ({ title, single, double, immune }) => {
         <ContainerPaddedVertical>
             <Heading2>{title}</Heading2>
             <View style={styles.types}>
-                {/* {immune.length ? immune.map((t) => <SmallTypeFlexImmune icon={t} />) : null} */}
-                {immune.length ? immune.map((t) => <SmallTypeFlex icon={t} />) : null}
-                {/* {double.length ? double.map((t) => <SmallTypeFlexDouble icon={t} />) : null} */}
-                {double.length ? double.map((t) => <SmallTypeFlex icon={t} />) : null}
+                {immune.length ? immune.map((t) => <SmallTypeFlexImmune icon={t} />) : null}
+                {double.length ? double.map((t) => <SmallTypeFlexDouble icon={t} />) : null}
                 {single.length ? single.map((t) => <SmallTypeFlex icon={t} />) : null}
             </View>
         </ContainerPaddedVertical>

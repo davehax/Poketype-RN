@@ -27,7 +27,7 @@
     },
     "expo": {
         "name": "Poketype",
-        "icon": "./img/app-icon.jpg",
+        "icon": "./img/app-icon.png",
         "version": "0.0.1",
         "slug": "poketype",
         "sdkVersion": "25.0.0",
