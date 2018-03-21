@@ -1,3 +1,6 @@
+// All the images used throughout the app must be defined here!
+
+// Type Icons
 let imgIcons = {};
 imgIcons["unselected"] = require('../img/questionmark.png');
 imgIcons["bug"] = require('../img/type-bug.png');
@@ -19,10 +22,13 @@ imgIcons["rock"] = require('../img/type-rock.png');
 imgIcons["steel"] = require('../img/type-steel.png');
 imgIcons["water"] = require('../img/type-water.png');
 
+// Close button for picker and picker panel
 const imgCloseButton = require("../img/btn-close.png");
 
+// App background image
 const imgPikachoo = require("../img/pikachoo.jpg");
 
+// Exports
 export default imgIcons;
 export {
     imgCloseButton,

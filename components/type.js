@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import imgIcons from "./images.js";
+import _ from "lodash";
 
 const Type = (props) => {
     return ( <TypeInternal {...props} style={styleType} /> )
@@ -14,8 +15,12 @@ const SmallTypeFlex = (props) => {
     return ( <TypeInternal {...props} style={styleSmallTypeFlex} /> )
 }
 
-const SmallTypeFlexDouble = (props) => {
-    return ( <TypeInternal {...props} style={styleSmallTypeFlexDouble} /> )
+const SmallTypeFlexDoubleResist = (props) => {
+    return ( <TypeInternal {...props} style={styleSmallTypeFlexDoubleResist} /> )
+}
+
+const SmallTypeFlexDoubleVulnerable = (props) => {
+    return ( <TypeInternal {...props} style={styleSmallTypeFlexDoubleVulnerable} /> )
 }
 
 const SmallTypeFlexImmune = (props) => {
@@ -78,13 +83,13 @@ const styleTypeFlex = StyleSheet.create({
     }
 });
 
-const styleSmallTypeFlex = StyleSheet.create({
+// Base styles for small type 
+const baseSmallTypeFlex = {
     viewStyle: {
         flex: 0,
         width: 86,
-        height: 80,
-        paddingLeft: 10,
-        paddingRight: 10,
+        height: 100,
+        padding: 10,
         alignItems: "center",
         justifyContent: "center"
     },
@@ -98,57 +103,47 @@ const styleSmallTypeFlex = StyleSheet.create({
         paddingTop: 5,
         paddingBottom: 5
     }
-});
+};
 
-const styleSmallTypeFlexDouble = StyleSheet.create({
-    viewStyle: {
-        flex: 0,
-        width: 86,
-        height: 80,
-        paddingLeft: 10,
-        paddingRight: 10,
-        backgroundColor: "#0E7E12",
-        borderRadius: 10,
-        alignItems: "center",
-        justifyContent: "center"
-    },
-    imageStyle: {
-        width: 50,
-        height: 50,
-        textAlign: "center"
-    },
-    textStyle: {
-        textAlign: "center",
-        paddingTop: 5,
-        paddingBottom: 5,
+const styleSmallTypeFlex = StyleSheet.create(baseSmallTypeFlex);
+
+// Small Flex Double Resist
+const styleSmallTypeFlexDoubleResist = StyleSheet.create({
+    viewStyle: _.assignIn({}, baseSmallTypeFlex.viewStyle, {
+            backgroundColor: "#0E7E12",
+            borderRadius: 10
+    }),
+    imageStyle: baseSmallTypeFlex.imageStyle,
+    textStyle: _.assignIn({}, baseSmallTypeFlex.textStyle, {
         color: "#FFFFFF"
-    }
+    })
 });
 
+// Small Flex Double Vulnerable
+const styleSmallTypeFlexDoubleVulnerable = StyleSheet.create({
+    viewStyle: _.assignIn({}, baseSmallTypeFlex.viewStyle, {
+            backgroundColor: "#FF0000",
+            borderRadius: 10
+    }),
+    imageStyle: baseSmallTypeFlex.imageStyle,
+    textStyle: _.assignIn({}, baseSmallTypeFlex.textStyle, {
+        color: "#FFFFFF",
+        textShadowColor: "#000000",
+        textShadowRadius: 2
+    })
+});
+
+// Small Flex Immune
 const styleSmallTypeFlexImmune = StyleSheet.create({
-    viewStyle: {
-        flex: 0,
-        width: 86,
-        height: 80,
-        paddingLeft: 10,
-        paddingRight: 10,
-        backgroundColor: "#000000",
-        borderRadius: 10,
-        alignItems: "center",
-        justifyContent: "center"
-    },
-    imageStyle: {
-        width: 50,
-        height: 50,
-        textAlign: "center"
-    },
-    textStyle: {
-        textAlign: "center",
-        paddingTop: 5,
-        paddingBottom: 5,
+    viewStyle: _.assignIn({}, baseSmallTypeFlex.viewStyle, {
+            backgroundColor: "#000000",
+            borderRadius: 10
+    }),
+    imageStyle: baseSmallTypeFlex.imageStyle,
+    textStyle: _.assignIn({}, baseSmallTypeFlex.textStyle, {
         color: "#FFFFFF"
-    }
+    })
 });
 
 export default Type;
-export { TypeFlex, SmallTypeFlex, SmallTypeFlexDouble, SmallTypeFlexImmune };
+export { TypeFlex, SmallTypeFlex, SmallTypeFlexDoubleResist, SmallTypeFlexDoubleVulnerable, SmallTypeFlexImmune };

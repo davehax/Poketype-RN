@@ -28,13 +28,15 @@ class Picker extends Component {
 
     render() {
         return (
-            <View style={ pickerStyle.view }>
-                <Type icon={this.props.type} onPress={this.onPress} />
-                <TouchableOpacity onPress={this.onCancelPress}>
-                    <View style={{ justifyContent: "center", alignItems: "center" }}>
-                        <Image source={imgCloseButton} />
-                    </View>
-                </TouchableOpacity>
+            <View style={pickerStyle.border}>
+                <View style={pickerStyle.view}>
+                    <Type icon={this.props.type} onPress={this.onPress} />
+                    <TouchableOpacity onPress={this.onCancelPress}>
+                        <View style={{ justifyContent: "center", alignItems: "center" }}>
+                            <Image source={imgCloseButton} />
+                        </View>
+                    </TouchableOpacity>
+                </View>
             </View>
         )
     }
@@ -50,7 +52,20 @@ const pickerStyle = StyleSheet.create({
         paddingTop: 10,
         paddingRight: 10,
         paddingBottom: 10,
-        paddingLeft: 10
+        paddingLeft: 10,
+
+        borderRadius: 10,
+        borderStyle: "solid",
+        borderColor: "#0E7E12",
+        borderWidth: 2,
+
+        backgroundColor: "rgb(237,247,238)"
+    },
+    border: {
+        borderRadius: 10,
+        borderStyle: "solid",
+        borderColor: "rgb(237,247,238)",
+        borderWidth: 2
     }
 })
 

@@ -8,6 +8,7 @@ import BackgroundImage from "./components/backgroundImage.js";
 import Picker from "./components/picker.js";
 import PickerPanel from "./components/pickerPanel.js";
 import EffectivenessProfile from "./components/effectivenessProfile.js";
+import Legend from "./components/legend.js";
 
 const pikachoo = require("./img/pikachoo.jpg");
 
@@ -97,8 +98,13 @@ class App extends React.Component {
                             </ContainerPadded>
                             <View style={styles.pickers}>
                                 <Picker type={this.state.type1} onPress={() => this.pickType("type1")} onCancelPress={() => this.resetType("type1")} />
+                                <View style={{ width: 5 }} />
                                 <Picker type={this.state.type2} onPress={() => this.pickType("type2")} onCancelPress={() => this.resetType("type2")} />
                             </View>
+
+                            <ContainerPadded>
+                                <Legend />
+                            </ContainerPadded>
 
                             {!this.state.pickerPanelVisible && (
                                 <EffectivenessProfile type1={this.state.type1} type2={this.state.type2} />

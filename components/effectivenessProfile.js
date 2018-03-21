@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { ScrollView, StyleSheet, View, Image, Dimensions, TouchableNativeFeedback, Text } from 'react-native';
-import Type, { SmallTypeFlex, SmallTypeFlexImmune, SmallTypeFlexDouble } from "./type.js";
+import Type, { SmallTypeFlex, SmallTypeFlexImmune, SmallTypeFlexDoubleResist, SmallTypeFlexDoubleVulnerable } from "./type.js";
 import types, { typesArray, calculateStrengthsAndWeaknesses } from "../lib/poketype.js";
 import Container, { Heading1, Heading2, ContainerPadded, ContainerPaddedVertical } from "./common.js";
 import _ from "lodash";
 
+// Still haven't got the hang of the stylesheet in React Native so don't cringe too much
 const styles = StyleSheet.create({
     types: {
         flex: 1,
@@ -58,6 +59,8 @@ const styles = StyleSheet.create({
     }
 })
 
+// This is what I call the "Effectiveness Profile"!
+// It lists the Strengths and Weaknesses for the selected Type(s)
 const EffectivenessProfile = ({ type1, type2 }) => {
     let selectedTypes = _.uniq(
         [type1, type2].filter((t) => t !== types.unselected)
@@ -94,6 +97,7 @@ const EffectivenessProfile = ({ type1, type2 }) => {
                     title="Resistant To"
                     single={effectivenessProfile.combined.resist}
                     double={effectivenessProfile.combined.resistDouble}
+                    DoubleComponent={SmallTypeFlexDoubleResist}
                     immune={effectivenessProfile.combined.resistImmune}
                 />
             </View>
@@ -105,6 +109,7 @@ const EffectivenessProfile = ({ type1, type2 }) => {
                     title="Vulnerable To"
                     single={effectivenessProfile.combined.vulnerable}
                     double={effectivenessProfile.combined.vulnerableDouble}
+                    DoubleComponent={SmallTypeFlexDoubleVulnerable}
                     immune={[]}
                 />
                 <View style={{ height: 10 }}></View>
@@ -119,6 +124,21 @@ const EffectivenessProfile = ({ type1, type2 }) => {
     )
 }
 
+// Displays the single, double and immune type(s) passed in as well as an additional Title
+const SimpleDisplayPanel = ({ title, single, double, DoubleComponent, immune }) => {
+    return (
+        <ContainerPaddedVertical>
+            <Heading2>{title}</Heading2>
+            <View style={styles.types}>
+                {immune.length ? immune.map((t) => <SmallTypeFlexImmune icon={t} />) : null}
+                {double.length ? double.map((t) => <DoubleComponent icon={t} />) : null}
+                {single.length ? single.map((t) => <SmallTypeFlex icon={t} />) : null}
+            </View>
+        </ContainerPaddedVertical>
+    )
+}
+
+// An extension of the SimpleDisplayPanel, this time adding an extra Type sub-title
 const TypedDisplayPanel = ({ title, selectedTypes, effectivenessProfile, index }) => {
     return (
         <ContainerPaddedVertical>
@@ -136,19 +156,6 @@ const TypedDisplayPanel = ({ title, selectedTypes, effectivenessProfile, index }
                     </View>
                 )
             })}
-        </ContainerPaddedVertical>
-    )
-}
-
-const SimpleDisplayPanel = ({ title, single, double, immune }) => {
-    return (
-        <ContainerPaddedVertical>
-            <Heading2>{title}</Heading2>
-            <View style={styles.types}>
-                {immune.length ? immune.map((t) => <SmallTypeFlexImmune icon={t} />) : null}
-                {double.length ? double.map((t) => <SmallTypeFlexDouble icon={t} />) : null}
-                {single.length ? single.map((t) => <SmallTypeFlex icon={t} />) : null}
-            </View>
         </ContainerPaddedVertical>
     )
 }
