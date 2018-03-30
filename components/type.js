@@ -95,8 +95,7 @@ const baseSmallTypeFlex = {
     },
     imageStyle: {
         width: 50,
-        height: 50,
-        textAlign: "center"
+        height: 50
     },
     textStyle: {
         textAlign: "center",

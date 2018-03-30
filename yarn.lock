@@ -2065,7 +2065,7 @@ expect@^22.4.0:
     jest-message-util "^22.4.0"
     jest-regex-util "^22.1.0"
 
-expo@^25.0.0:
+expo@25.0.0:
   version "25.0.0"
   resolved "https://registry.yarnpkg.com/expo/-/expo-25.0.0.tgz#791d0052e159d56854a84d90540bf11c33abfe4d"
   dependencies:
@@ -4838,6 +4838,10 @@ react-native-gesture-handler@1.0.0-alpha.39:
 react-native-maps@0.19.0:
   version "0.19.0"
   resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.19.0.tgz#ce94fad1cf360e335cb4338a68c95f791e869074"
+
+react-native-modal-filter-picker@1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/react-native-modal-filter-picker/-/react-native-modal-filter-picker-1.3.2.tgz#1a678c68132d65c82e631aee718ed979255969aa"
 
 react-native-safe-module@^1.1.0:
   version "1.2.0"

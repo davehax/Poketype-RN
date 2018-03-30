@@ -130,9 +130,9 @@ const SimpleDisplayPanel = ({ title, single, double, DoubleComponent, immune }) 
         <ContainerPaddedVertical>
             <Heading2>{title}</Heading2>
             <View style={styles.types}>
-                {immune.length ? immune.map((t) => <SmallTypeFlexImmune icon={t} />) : null}
-                {double.length ? double.map((t) => <DoubleComponent icon={t} />) : null}
-                {single.length ? single.map((t) => <SmallTypeFlex icon={t} />) : null}
+                {immune.length ? immune.map((t, idx) => <SmallTypeFlexImmune icon={t} key={idx} />) : null}
+                {double.length ? double.map((t, idx) => <DoubleComponent icon={t} key={idx} />) : null}
+                {single.length ? single.map((t, idx) => <SmallTypeFlex icon={t} key={idx} />) : null}
             </View>
         </ContainerPaddedVertical>
     )
@@ -143,11 +143,11 @@ const TypedDisplayPanel = ({ title, selectedTypes, effectivenessProfile, index }
     return (
         <ContainerPaddedVertical>
             <Heading2>{title}</Heading2>
-            {selectedTypes.map((selectedType) => {
+            {selectedTypes.map((selectedType, idx) => {
                 return (
-                    <View>
+                    <View key={idx}>
                         <View style={styles.types}>
-                            {effectivenessProfile[selectedType][index].map((t) => <SmallTypeFlex icon={t} />)}
+                            {effectivenessProfile[selectedType][index].map((t, idx2) => <SmallTypeFlex icon={t} key={idx2} />)}
                         </View>
                         <View style={styles.typeBorder}></View>
                         <View>
