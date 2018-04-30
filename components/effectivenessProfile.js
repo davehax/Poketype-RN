@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
         width: "100%"
     },
     typeSubTitle: {
+        fontFamily: "barlow-condensed-regular",
         paddingLeft: 0,
         paddingTop: 10,
         fontSize: 16

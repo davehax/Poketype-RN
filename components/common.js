@@ -4,10 +4,12 @@ import { ScrollView, StyleSheet, View, Image, Dimensions, TouchableNativeFeedbac
 const style = StyleSheet.create({
     heading1: {
         fontSize: 24,
+        fontFamily: "barlow-condensed-bold",
         fontWeight: "bold"
     },
     heading2: {
         fontSize: 18,
+        fontFamily: "barlow-condensed-regular",
         fontWeight: "bold"
     }
 })

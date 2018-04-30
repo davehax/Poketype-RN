@@ -59,6 +59,7 @@ const styleType = StyleSheet.create({
     },
     imageStyle: {},
     textStyle: {
+        fontFamily: "barlow-condensed-regular",
         textAlign: "center",
         paddingTop: 5,
         paddingBottom: 5
@@ -77,6 +78,7 @@ const styleTypeFlex = StyleSheet.create({
     },
     imageStyle: {},
     textStyle: {
+        fontFamily: "barlow-condensed-regular",
         textAlign: "center",
         paddingTop: 5,
         paddingBottom: 5
@@ -98,6 +100,7 @@ const baseSmallTypeFlex = {
         height: 50
     },
     textStyle: {
+        fontFamily: "barlow-condensed-regular",
         textAlign: "center",
         paddingTop: 5,
         paddingBottom: 5

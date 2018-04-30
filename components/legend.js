@@ -4,12 +4,15 @@ import Container from "./common.js";
 
 const styles = StyleSheet.create({
     doubleStrong: {
+        fontFamily: "barlow-condensed-regular",
         color: "#0E7E12",
     },
     doubleWeak: {
+        fontFamily: "barlow-condensed-regular",
         color: "#FF0000",
     },
     immune: {
+        fontFamily: "barlow-condensed-regular",
         color: "#000000",
     }
 })

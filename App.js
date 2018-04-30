@@ -11,6 +11,7 @@ import EffectivenessProfile from "./components/effectivenessProfile.js";
 import Legend from "./components/legend.js";
 import ModalFilterPicker from 'react-native-modal-filter-picker';
 import pokedata from "./lib/pokedata.json";
+import { Font } from "expo";
 
 const pikachoo = require("./img/pikachoo.jpg");
 
@@ -43,6 +44,7 @@ class App extends React.Component {
         super(props);
 
         this.state = {
+            fontLoaded: false,
             type1: types.unselected,
             type2: types.unselected,
             pickerPanelVisible: false,
@@ -65,6 +67,17 @@ class App extends React.Component {
         this.onPokemonSelect = this.onPokemonSelect.bind(this);
         this.onPokemonCancel = this.onPokemonCancel.bind(this);
         this.onPokemonShow = this.onPokemonShow.bind(this);
+    }
+
+    async componentDidMount() {
+        await Font.loadAsync({
+            "barlow-condensed-bold": require("./assets/fonts/barlow-condensed-bold.ttf"),
+            "barlow-condensed-regular": require("./assets/fonts/barlow-condensed-regular.ttf")
+        });
+
+        this.setState({
+            fontLoaded: true
+        })
     }
 
     pickType(p) {
@@ -134,49 +147,60 @@ class App extends React.Component {
     }
 
     render() {
-        return (
-            <ImageBackground source={imgPikachoo} style={styles.backgroundImage}>
-                {this.state.pickerPanelVisible ? (
-                    <PickerPanel onPicked={this.onTypePicked} onPressCancel={this.onTypePickerCancel} />
-                ) : (
-                    <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.container}>
-                        {/* <BackgroundImage /> */}
-                        <View style={styles.content}>
-                            <ContainerPadded>
-                                <Heading1>Poketype</Heading1>
-                                <Text>Select one or two types to see their individual or combined strengths and weaknesses</Text>
-                            </ContainerPadded>
-                            <View style={styles.pickers}>
-                                <Picker type={this.state.type1} onPress={() => this.pickType("type1")} onCancelPress={() => this.resetType("type1")} />
-                                <View style={{ width: 5 }} />
-                                <Picker type={this.state.type2} onPress={() => this.pickType("type2")} onCancelPress={() => this.resetType("type2")} />
+        if (!this.state.fontLoaded) {
+            return (
+                <ImageBackground source={imgPikachoo} style={styles.backgroundImage}>
+                    <ContainerPadded>
+                        <Text>Loading fonts...</Text>
+                    </ContainerPadded>
+                </ImageBackground>
+            )
+        }
+        else {
+            return (
+                <ImageBackground source={imgPikachoo} style={styles.backgroundImage}>
+                    {this.state.pickerPanelVisible ? (
+                        <PickerPanel onPicked={this.onTypePicked} onPressCancel={this.onTypePickerCancel} />
+                    ) : (
+                        <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.container}>
+                            {/* <BackgroundImage /> */}
+                            <View style={styles.content}>
+                                <ContainerPadded>
+                                    <Heading1>Poketype</Heading1>
+                                    <Text style={ { fontFamily: "barlow-condensed-regular" } }>Select one or two types to see their individual or combined strengths and weaknesses</Text>
+                                </ContainerPadded>
+                                <View style={styles.pickers}>
+                                    <Picker type={this.state.type1} onPress={() => this.pickType("type1")} onCancelPress={() => this.resetType("type1")} />
+                                    <View style={{ width: 5 }} />
+                                    <Picker type={this.state.type2} onPress={() => this.pickType("type2")} onCancelPress={() => this.resetType("type2")} />
+                                </View>
+
+                                <ContainerPadded>
+                                    <Button title="Pick a Pokemon" onPress={this.onPokemonShow} style={ { fontFamily: "barlow-condensed-regular" } } />
+
+                                    <ModalFilterPicker
+                                        visible={this.state.pokemonPickerVisible}
+                                        onSelect={this.onPokemonSelect}
+                                        onCancel={this.onPokemonCancel}
+                                        options={this.pokemonOptions}
+                                    />
+                                </ContainerPadded>
+
+                                <ContainerPadded>
+                                    <Legend />
+                                </ContainerPadded>
+
+                                {!this.state.pickerPanelVisible && (
+                                    <EffectivenessProfile type1={this.state.type1} type2={this.state.type2} />
+                                )}
+
+                                
                             </View>
-
-                            <ContainerPadded>
-                                <Button title="Pick a Pokemon" onPress={this.onPokemonShow} />
-
-                                <ModalFilterPicker
-                                    visible={this.state.pokemonPickerVisible}
-                                    onSelect={this.onPokemonSelect}
-                                    onCancel={this.onPokemonCancel}
-                                    options={this.pokemonOptions}
-                                />
-                            </ContainerPadded>
-
-                            <ContainerPadded>
-                                <Legend />
-                            </ContainerPadded>
-
-                            {!this.state.pickerPanelVisible && (
-                                <EffectivenessProfile type1={this.state.type1} type2={this.state.type2} />
-                            )}
-
-                            
-                        </View>
-                    </ScrollView>
-                )}
-            </ImageBackground>
-        );
+                        </ScrollView>
+                    )}
+                </ImageBackground>
+            );
+        }
     }
 }
 
