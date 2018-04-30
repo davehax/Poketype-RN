@@ -6,6 +6,8 @@
         "icon": "./img/app-icon.png",
         "version": "0.0.1",
         "slug": "poketype",
+        "privacy": "public",
+        "description": "This is a personal project designed to help me learn React Native as well as providing some assistance when playing Pokemon GO",
         "ios": {
             "bundleIdentifier": "davehax.poketype"
         },
