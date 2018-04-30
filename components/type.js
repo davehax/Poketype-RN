@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import imgIcons from "./images.js";
+import { CommonStyles, CommonStyleSheet } from "./common.js";
 import _ from "lodash";
 
 const Type = (props) => {
@@ -58,12 +59,11 @@ const styleType = StyleSheet.create({
         justifyContent: "center"
     },
     imageStyle: {},
-    textStyle: {
-        fontFamily: "barlow-condensed-regular",
+    textStyle: _.assignIn({}, CommonStyles.text, {
         textAlign: "center",
         paddingTop: 5,
         paddingBottom: 5
-    }
+    })
 });
 
 const styleTypeFlex = StyleSheet.create({
@@ -77,20 +77,19 @@ const styleTypeFlex = StyleSheet.create({
         justifyContent: "center"
     },
     imageStyle: {},
-    textStyle: {
-        fontFamily: "barlow-condensed-regular",
+    textStyle: _.assignIn({}, CommonStyles.text, {
         textAlign: "center",
         paddingTop: 5,
         paddingBottom: 5
-    }
+    })
 });
 
 // Base styles for small type 
 const baseSmallTypeFlex = {
     viewStyle: {
         flex: 0,
-        width: 86,
-        height: 100,
+        width: 66,
+        height: 80,
         padding: 10,
         alignItems: "center",
         justifyContent: "center"
@@ -99,12 +98,10 @@ const baseSmallTypeFlex = {
         width: 50,
         height: 50
     },
-    textStyle: {
-        fontFamily: "barlow-condensed-regular",
+    textStyle: _.assignIn({}, CommonStyles.textSmall, {
         textAlign: "center",
-        paddingTop: 5,
-        paddingBottom: 5
-    }
+        paddingTop: 5
+    })
 };
 
 const styleSmallTypeFlex = StyleSheet.create(baseSmallTypeFlex);

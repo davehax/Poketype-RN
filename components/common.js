@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, View, Image, Dimensions, TouchableNativeFeedbac
 
 const style = StyleSheet.create({
     heading1: {
-        fontSize: 24,
+        fontSize: 28,
         fontFamily: "barlow-condensed-bold",
         fontWeight: "bold"
     },
@@ -12,20 +12,38 @@ const style = StyleSheet.create({
         fontFamily: "barlow-condensed-regular",
         fontWeight: "bold"
     }
-})
+});
 
+// Common Styles as an object
+const CommonStyles = {
+    text: {
+        fontFamily: "barlow-condensed-regular",
+        fontSize: 16
+    },
+    textSmall: {
+        fontFamily: "barlow-condensed-regular",
+        fontSize: 13
+    }
+};
+
+// Common Styles as a StyleSheet
+const CommonStyleSheet = StyleSheet.create(CommonStyles);
+
+// Heading 1 Pure Component
 class Heading1 extends PureComponent {
     render() {
         return ( <Text style={style.heading1}>{this.props.children}</Text> )
     }
 }
 
+// Heading 2 Pure Component
 class Heading2 extends PureComponent {
     render() {
         return ( <Text style={style.heading2}>{this.props.children}</Text> )
     }
 }
 
+// Container Pure Component
 class Container extends PureComponent {
     render() {
         return (
@@ -36,6 +54,7 @@ class Container extends PureComponent {
     }
 }
 
+// Container Padded Pure Component
 class ContainerPadded extends PureComponent {
     render() {
         return (
@@ -46,6 +65,7 @@ class ContainerPadded extends PureComponent {
     }
 }
 
+// Container Padded Vertical Pure Component
 class ContainerPaddedVertical extends PureComponent {
     render() {
         return (
@@ -56,20 +76,10 @@ class ContainerPaddedVertical extends PureComponent {
     }
 }
 
-// const Container = (props) => {
-//     return (
-//         <View style={{ flex: 1}}>{props.children}</View>
-//     )
-// }
-
-// const Heading1 = (props) => {
-//     return (
-//         <Text style={style.heading1}>{props.children}</Text>
-//     )
-// }
-
 export default Container;
 export {
+    CommonStyles,
+    CommonStyleSheet,
     ContainerPadded,
     ContainerPaddedVertical,
     Heading1,

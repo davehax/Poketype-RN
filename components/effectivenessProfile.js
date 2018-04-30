@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     strengths: {
         flex: 1,
         padding: 20,
-        minHeight: 100,
+        minHeight: 80,
         // backgroundColor: "#0E7E12"
         backgroundColor: "rgba(0, 200, 0, 0.5)",
         borderStyle: "solid",
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     weaknesses: {
         flex: 1,
         padding: 20,
-        minHeight: 100,
+        minHeight: 80,
         // backgroundColor: "#FF0000"
         backgroundColor: "rgba(200, 100, 50, 0.5)",
         borderStyle: "solid",

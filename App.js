@@ -1,6 +1,6 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, View, Dimensions, ImageBackground, TouchableOpacity, Button } from "react-native";
-import { Heading1, ContainerPadded } from "./components/common.js";
+import { Heading1, ContainerPadded, CommonStyleSheet, CommonStyles } from "./components/common.js";
 import { imgPikachoo } from "./components/images.js";
 import Type from "./components/type.js";
 import types from "./lib/poketype.js";
@@ -12,6 +12,7 @@ import Legend from "./components/legend.js";
 import ModalFilterPicker from 'react-native-modal-filter-picker';
 import pokedata from "./lib/pokedata.json";
 import { Font } from "expo";
+import _ from "lodash";
 
 const pikachoo = require("./img/pikachoo.jpg");
 
@@ -167,7 +168,7 @@ class App extends React.Component {
                             <View style={styles.content}>
                                 <ContainerPadded>
                                     <Heading1>Poketype</Heading1>
-                                    <Text style={ { fontFamily: "barlow-condensed-regular" } }>Select one or two types to see their individual or combined strengths and weaknesses</Text>
+                                    <Text style={CommonStyleSheet.text}>Select one or two types to see their individual or combined strengths and weaknesses</Text>
                                 </ContainerPadded>
                                 <View style={styles.pickers}>
                                     <Picker type={this.state.type1} onPress={() => this.pickType("type1")} onCancelPress={() => this.resetType("type1")} />
@@ -176,13 +177,20 @@ class App extends React.Component {
                                 </View>
 
                                 <ContainerPadded>
-                                    <Button title="Pick a Pokemon" onPress={this.onPokemonShow} style={ { fontFamily: "barlow-condensed-regular" } } />
+                                    <Button title="Pick a Pokemon" onPress={this.onPokemonShow} style={CommonStyleSheet.text} />
 
                                     <ModalFilterPicker
                                         visible={this.state.pokemonPickerVisible}
                                         onSelect={this.onPokemonSelect}
                                         onCancel={this.onPokemonCancel}
                                         options={this.pokemonOptions}
+                                        filterTextInputStyle={_.assignIn({}, CommonStyles.text, {
+                                            padding: 10
+                                        })}
+                                        optionTextStyle={_.assignIn({}, CommonStyles.text, {
+                                            flex: 1,
+                                            fontSize: 18
+                                        })}
                                     />
                                 </ContainerPadded>
 

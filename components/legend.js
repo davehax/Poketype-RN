@@ -1,21 +1,22 @@
 import React, { PureComponent } from "react";
 import { StyleSheet, Text } from 'react-native';
-import Container from "./common.js";
+import Container, { CommonStyles } from "./common.js";
+import _ from "lodash";
 
 const styles = StyleSheet.create({
-    doubleStrong: {
-        fontFamily: "barlow-condensed-regular",
+    doubleStrong: _.assignIn({}, CommonStyles.text, {
         color: "#0E7E12",
-    },
-    doubleWeak: {
-        fontFamily: "barlow-condensed-regular",
+    }),
+    doubleWeak:  _.assignIn({}, CommonStyles.text, {
         color: "#FF0000",
-    },
-    immune: {
-        fontFamily: "barlow-condensed-regular",
+    }),
+    immune:  _.assignIn({}, CommonStyles.text, {
         color: "#000000",
-    }
-})
+    })
+});
+
+console.log(styles.doubleStrong);
+console.log(styles.doubleWeak);
 
 // The "Legend" displayed below the Picker's on the main app screen
 class Legend extends PureComponent {
