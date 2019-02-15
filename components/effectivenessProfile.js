@@ -143,11 +143,6 @@ const SimpleDisplayPanel = ({ title, single, double, DoubleComponent, immune }) 
 // An extension of the SimpleDisplayPanel, this time adding an extra Type sub-title
 const TypedDisplayPanel = ({ title, selectedTypes, effectivenessProfile, index, immuneIndex }) => {
 
-    console.log(title);
-    console.log(selectedTypes);
-    console.log(effectivenessProfile);
-    console.log(index);
-
     return (
         <ContainerPaddedVertical>
             <Heading2>{title}</Heading2>
