@@ -119,6 +119,7 @@ const EffectivenessProfile = ({ type1, type2 }) => {
                     selectedTypes={selectedTypes}
                     effectivenessProfile={effectivenessProfile}
                     index="notEffective"
+                    immuneIndex="notEffectiveImmune"
                 />
             </View>
         </Container>
@@ -140,7 +141,13 @@ const SimpleDisplayPanel = ({ title, single, double, DoubleComponent, immune }) 
 }
 
 // An extension of the SimpleDisplayPanel, this time adding an extra Type sub-title
-const TypedDisplayPanel = ({ title, selectedTypes, effectivenessProfile, index }) => {
+const TypedDisplayPanel = ({ title, selectedTypes, effectivenessProfile, index, immuneIndex }) => {
+
+    console.log(title);
+    console.log(selectedTypes);
+    console.log(effectivenessProfile);
+    console.log(index);
+
     return (
         <ContainerPaddedVertical>
             <Heading2>{title}</Heading2>
@@ -148,6 +155,7 @@ const TypedDisplayPanel = ({ title, selectedTypes, effectivenessProfile, index }
                 return (
                     <View key={idx}>
                         <View style={styles.types}>
+                            {typeof(immuneIndex) !== "undefined" ? effectivenessProfile[selectedType][immuneIndex].map((t, idx2) => <SmallTypeFlexImmune icon={t} key={idx2} />) : null}
                             {effectivenessProfile[selectedType][index].map((t, idx2) => <SmallTypeFlex icon={t} key={idx2} />)}
                         </View>
                         <View style={styles.typeBorder}></View>
